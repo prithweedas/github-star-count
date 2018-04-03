@@ -1,7 +1,8 @@
 {
   "name": "github-star-count",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "https://prithweedas.github.io/github-star-count/",
   "dependencies": {
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
