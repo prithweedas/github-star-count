@@ -1,15 +1,18 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import './styles.css'
-import SearchBox from './components/Searchbox'
+import SearchBox from './components/SearchBox'
+import BlankScreen from './components/BlankScreen'
+import Loading from './components/Loading'
 
 class App extends Component {
-  // componentDidMount() {
-  //   fetch('https://api.github.com/users/ritwickdey/repos')
-  //     .then(response => response.json())
-  //     .then(console.log)
-  //     .catch(console.log)
-  // }
+  componentDidMount() {
+    fetch('https://api.github.com/users/ritwickdey/repos')
+      .then(response => response.json())
+      .then(console.log)
+      .catch(console.log)
+  }
 
   constructor(props) {
     super(props)
@@ -27,7 +30,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          display: 'flex',
+          flexDirection: 'column'
+        }}
+      >
         <SearchBox
           type="text"
           name="username"
@@ -35,9 +45,17 @@ class App extends Component {
           onChange={this.onChangeInput}
           placeholder="GitHub username"
         />
+        {this.props.appState === 'blank' && <BlankScreen />}
+        {this.props.appState === 'loading' && <Loading />}
       </div>
     )
   }
 }
 
-export default App
+const mapStateToProps = state => ({
+  appState: state.appState,
+  username: state.username,
+  repos: state.repos
+})
+
+export default connect(mapStateToProps)(App)
