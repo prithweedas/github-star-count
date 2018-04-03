@@ -23,7 +23,7 @@ const styles = {
     alignItems: 'center'
   },
   devider: {
-    width: '70%',
+    width: '70rem',
     height: '0.2rem',
     backgroundColor: '#444'
   },

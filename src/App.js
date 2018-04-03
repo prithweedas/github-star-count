@@ -46,7 +46,7 @@ class App extends Component {
   render() {
     return (
       <div
-        className="app"
+        className="App"
         style={{
           display: 'flex',
           flex: 1,

@@ -25,7 +25,6 @@ const styles = {
     paddingVertical: '2rem'
   },
   searchbox: {
-    minWidth: 420,
     paddingLeft: '2rem',
     paddingRight: '2rem',
     paddingTop: '1rem',
