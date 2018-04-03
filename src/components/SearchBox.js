@@ -1,12 +1,14 @@
 import React from 'react'
 
-const SearchBox = props => {
+const SearchBox = ({ setUser, ...otherProps }) => {
   return (
     <div style={styles.searchBoxContainer}>
       <input
         style={styles.searchbox}
-        onKeyUp={e => console.log(e.key, e.ctrlKey, e.keyCode)}
-        {...props}
+        onKeyUp={e => {
+          if (e.keyCode === 13) setUser()
+        }}
+        {...otherProps}
       />
     </div>
   )
@@ -23,6 +25,7 @@ const styles = {
     paddingVertical: '2rem'
   },
   searchbox: {
+    minWidth: 420,
     paddingLeft: '2rem',
     paddingRight: '2rem',
     paddingTop: '1rem',

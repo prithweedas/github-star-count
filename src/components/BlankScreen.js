@@ -1,16 +1,18 @@
 import React from 'react'
 
-const BlankScreen = () => (
+const BlankScreen = ({ text }) => (
   <div style={styles.container}>
-    <div style={styles.text}>Enter an username and press &#8629;</div>
+    <div style={styles.text}>{text}</div>
   </div>
 )
 
 const styles = {
   container: {
-    position: 'relative',
-    width: '100%',
-    flex: 1,
+    position: 'absolute',
+    top: '7rem',
+    bottom: 0,
+    left: 0,
+    right: 0,
     backgroundColor: '#f9f9f9',
     display: 'flex',
     alignItems: 'center',
