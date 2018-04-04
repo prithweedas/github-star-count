@@ -5,7 +5,7 @@ import {
   SET_REPODATA
 } from '../actionTypes'
 import { LOADING_STATE, ERROR_STATE, DONE_STATE } from '../../utils/AppState'
-import { BASE_URL, TOKEN } from '../../utils/Constants'
+import { BASE_URL } from '../../utils/Constants'
 import { extractUserData, extractRepoData } from '../../utils/UtilFuncs'
 
 export const setUser = username => {
@@ -15,23 +15,13 @@ export const setUser = username => {
       payload: username
     })
     dispatch(setAppState(LOADING_STATE))
-    fetch(`${BASE_URL}/users/${username}`, {
-      headers: {
-        Authorization: `token ${TOKEN}`
-      }
-    })
+    fetch(`${BASE_URL}/users/${username}`)
       .then(res => {
         if (res.status === 404) throw new Error()
         return res.json()
       })
       .then(data => dispatch(setUserData(data)))
-      .then(() =>
-        fetch(`${BASE_URL}/users/${username}/repos`, {
-          headers: {
-            Authorization: `token ${TOKEN}`
-          }
-        })
-      )
+      .then(() => fetch(`${BASE_URL}/users/${username}/repos`))
       .then(res => res.json())
       .then(data => dispatch(setRepoData(data)))
       .then(() => dispatch(setAppState(DONE_STATE)))
